@@ -187,9 +187,12 @@ public class QueryProcessor {
 				}
 			}
 		}
-		double preFactor = Math.sqrt(realTokenList.size());
+		double preFactor = Math.sqrt(realTokenList.size()+1);
+		List<String> haha = new ArrayList<String>();
 		for (String key : matrix.keySet()) {
 			String values = matrix.get(key);
+//			System.out.println("Count: " + values);
+//			.add(values);
 			String[] valueList = values.split(",");
 			double rslValue = 0.0;
 			double above = 0.0;
@@ -199,8 +202,17 @@ public class QueryProcessor {
 				above += tmp;
 				bellow += tmp*tmp;
 			}
-			rslValue = above / (preFactor * Math.sqrt(bellow));
+//			haha.add(above+1+":"+ Math.sqrt(bellow+1)+"@"+preFactor);
+			above = above + 1;
+			bellow = preFactor * Math.sqrt(bellow+1);
+			rslValue = above / bellow;
+//			rslValue = (above+1) / (preFactor * Math.sqrt(bellow+1));
+			haha.add(above + "," + bellow + "," + rslValue+"");
 			_counter.put(key, rslValue);
+		}
+		Collections.sort(haha);
+		for (String hahaT : haha) {
+			System.out.println(hahaT);
 		}
 		// Second, sort the hashmap by count
 		List<Map.Entry<String, Double>> sortedList = sortByComparator(_counter);
