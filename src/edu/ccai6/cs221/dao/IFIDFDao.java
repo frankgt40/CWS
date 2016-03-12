@@ -21,9 +21,16 @@ public class IFIDFDao {
 		return list;
 	}
 	public IFIDF getIFIDF(String token) {
-		String sql = "SELECT * FROM ifidf_table_bak WHERE token = ?";
-		IFIDF rsl = jdbcTemplateObject.queryForObject(sql, 
+		String sql = "SELECT * FROM ifidf_table WHERE token = ?";
+		IFIDF rsl = new IFIDF();
+		try{
+		rsl = jdbcTemplateObject.queryForObject(sql, 
                 new Object[]{token}, new IFIDFMapper());
+		} catch (Exception e) {
+			e.printStackTrace();
+			rsl.set_token("");
+			rsl.set_value("");
+		}
 		return rsl;
 	}
 }

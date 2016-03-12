@@ -12,6 +12,9 @@ public class Result {
 		this.paragraph = paragraph;
 		this.rank = rank;
 	}
+	public boolean isNotFind() {
+		return url == QueryProcessor.NOT_FIND;
+	}
 	public String getTitle() {
 		return title;
 	}
