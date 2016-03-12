@@ -147,7 +147,7 @@ public class QueryProcessor {
 	public List<Result> rankImproved(IFIDFDao ifidfDao, URLDao urlDao, TextDao textDao, HTMLDao htmlDao) {
 		List<Result> rslList = new ArrayList<Result>();
 		List<String> realTokenList = new ArrayList<String>();
-		Map<String, String> matrix = new HashMap<String,String>();
+		Map<String, String> matrix = new HashMap<String,String>(); //<DocID, [x1,x2,x3,...]>
 		// First, do the computation
 		for (String token : _tokenList) {
 			String value = ifidfDao.getIFIDF(token).get_value();
